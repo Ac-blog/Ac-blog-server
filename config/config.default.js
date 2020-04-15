@@ -18,6 +18,10 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [];
 
+  config.security = {
+    domainWhiteList: [ 'http://localhost:8081' ],
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
