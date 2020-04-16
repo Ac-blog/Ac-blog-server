@@ -19,7 +19,19 @@ module.exports = appInfo => {
   config.middleware = [];
 
   config.security = {
+    csrf: {
+      enable: false,
+    },
     domainWhiteList: [ 'http://localhost:8081' ],
+  };
+
+  config.mongoose = {
+    url: process.env.EGG_MONGODB_URL || 'mongodb://127.0.0.1/ac-admin',
+    options: {
+      server: {
+        poolSize: 40,
+      },
+    },
   };
 
   // add your user config here

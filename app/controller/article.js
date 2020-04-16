@@ -23,6 +23,12 @@ class HomeController extends Controller {
   */
   addArticle() {
     const { ctx } = this;
+    ctx.model.Article.create({
+      release: true,
+      title: '这是一个标题',
+    }, res => {
+      console.log(res);
+    });
     ctx.body = 'addArticle';
   }
 
