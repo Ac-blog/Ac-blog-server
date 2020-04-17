@@ -2,7 +2,7 @@
 
 const Controller = require('egg').Controller;
 
-class HomeController extends Controller {
+class ArticleController extends Controller {
   /**
    * 获取文章列表
   */
@@ -65,4 +65,4 @@ class HomeController extends Controller {
   }
 }
 
-module.exports = HomeController;
+module.exports = ArticleController;
