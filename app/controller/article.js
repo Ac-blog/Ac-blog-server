@@ -2,7 +2,7 @@
 
 const Controller = require('egg').Controller;
 
-class HomeController extends Controller {
+class ArticleController extends Controller {
   /**
    * 获取文章列表
   */
@@ -23,6 +23,12 @@ class HomeController extends Controller {
   */
   addArticle() {
     const { ctx } = this;
+    ctx.model.Article.create({
+      release: true,
+      title: '这是一个标题',
+    }, res => {
+      console.log(res);
+    });
     ctx.body = 'addArticle';
   }
 
@@ -59,4 +65,4 @@ class HomeController extends Controller {
   }
 }
 
-module.exports = HomeController;
+module.exports = ArticleController;
