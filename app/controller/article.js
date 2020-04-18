@@ -8,11 +8,10 @@ class ArticleController extends Controller {
   */
   async findArticles() {
     const { ctx, service } = this;
-
-    const articles = service.article.find();
-
+    const articles = await service.article.find();
     ctx.body = {
       code: 200,
+      success: true,
       message: 'success',
       data: articles,
     };
@@ -24,8 +23,21 @@ class ArticleController extends Controller {
   addArticle() {
     const { ctx } = this;
     ctx.model.Article.create({
+      title: '文章5',
+      author: 'Allen周嘉炜',
+      readNumber: 100,
+      like: 99,
+      name: '王小虎',
+      articleType: 1,
+      body: '上海市普陀区金沙江路 1518 弄',
+      updated: '2020-04-18 10:20:09',
       release: true,
-      title: '这是一个标题',
+      comments: [
+        {
+          body: '文章很好啊',
+          date: '2020-04-19 10:09:09',
+        },
+      ],
     }, res => {
       console.log(res);
     });
