@@ -15,7 +15,7 @@ module.exports = app => {
     },
     /** 分类 */
     articleType: {
-      type: Number,
+      type: Schema.Types.Mixed,
       default: 0,
     },
     /** 阅读数 */
