@@ -22,7 +22,8 @@ class ArticleService extends Service {
       ],
     };
     // 文章条件查询结果
-    const articleFindResult = await ctx.model.Article.find(article_filter).skip((parseInt(page) - 1) * parseInt(size)).limit(parseInt(size));
+    const articleFindResult = await ctx.model.Article.find(article_filter).skip((parseInt(page) - 1) * parseInt(size)).limit(parseInt(size))
+      .sort({ updated: -1 });
     // 所有文章数
     const articleTotalCount = await ctx.model.Article.find(article_filter).count();
     // 已发布文章数
