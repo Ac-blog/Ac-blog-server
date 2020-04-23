@@ -20,31 +20,29 @@ class ArticleController extends Controller {
   /**
    * 新增文章
    */
-  addArticle() {
+  async addArticle() {
     const { ctx } = this;
-    ctx.model.Article.create(
-      {
-        title: '文章13',
-        author: 'Allen周嘉炜',
-        readNumber: 100,
-        like: 99,
-        name: '王小虎',
-        articleType: 2,
-        body: '上海市普陀区金沙江路 1518 弄',
-        updated: '2020-04-18 10:20:09',
-        release: false,
-        comments: [
-          {
-            body: '文章很好啊',
-            date: '2020-04-19 10:09:09',
-          },
-        ],
-      },
-      res => {
-        console.log(res);
-      }
-    );
-    ctx.body = 'addArticle';
+    const requestBody = ctx.request.body;
+    const createdResult = await ctx.model.Article.create({
+      ...requestBody,
+    });
+    if (createdResult._id) {
+      // 创建成功
+      ctx.body = {
+        code: 200,
+        success: true,
+        message: '文章创建成功',
+        results: {
+          article_id: createdResult._id,
+        },
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        success: false,
+        message: createdResult,
+      };
+    }
   }
 
   /**
