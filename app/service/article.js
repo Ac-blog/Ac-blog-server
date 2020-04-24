@@ -90,6 +90,25 @@ class ArticleService extends Service {
       success: false,
     };
   }
+
+  /**
+   * 获取文章详情
+  */
+  async getArticleDetailById() {
+    const { ctx } = this;
+    const articleDetailRes = await ctx.model.Article.findOne(
+      { _id: ctx.query._id }
+    );
+    if (articleDetailRes) {
+      return {
+        success: true,
+        results: articleDetailRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
 }
 
 module.exports = ArticleService;

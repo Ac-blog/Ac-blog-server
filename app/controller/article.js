@@ -95,8 +95,19 @@ class ArticleController extends Controller {
    * 获取文章详情页
    */
   async getArticleDetailById() {
-    const { ctx } = this;
-    ctx.body = 'getArticleDetailById';
+    const { ctx, service } = this;
+    const res = await service.article.getArticleDetailById();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 }
 
