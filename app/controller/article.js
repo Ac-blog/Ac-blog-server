@@ -56,17 +56,39 @@ class ArticleController extends Controller {
   /**
    * 文章发布
    */
-  articlePublish() {
-    const { ctx } = this;
-    ctx.body = 'articlePublish';
+  async articlePublish() {
+    const { ctx, service } = this;
+    const res = await service.article.articlePublish();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 
   /**
    * 文章取消发布
    */
-  articleUnpublish() {
-    const { ctx } = this;
-    ctx.body = 'articleUnpublish';
+  async articleUnpublish() {
+    const { ctx, service } = this;
+    const res = await service.article.articleUnpublish();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 
   /**

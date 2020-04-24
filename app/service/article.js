@@ -48,6 +48,48 @@ class ArticleService extends Service {
       unpublishedNum: unpublishedNumber,
     };
   }
+
+  /**
+   * 查询到一个并修改
+   * 文章发布
+  */
+  async articlePublish() {
+    const { ctx } = this;
+    const articlePublishRes = await ctx.model.Article.findOneAndUpdate(
+      { _id: ctx.request.body._id },
+      { $set: { release: true } },
+      { upsert: true, new: true });
+    if (articlePublishRes) {
+      return {
+        success: true,
+        results: articlePublishRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
+
+  /**
+   * 查询到一个并修改
+   * 取消文章发布
+  */
+  async articleUnpublish() {
+    const { ctx } = this;
+    const articleUnpublishRes = await ctx.model.Article.findOneAndUpdate(
+      { _id: ctx.request.body._id },
+      { $set: { release: false } },
+      { upsert: true, new: true });
+    if (articleUnpublishRes) {
+      return {
+        success: true,
+        results: articleUnpublishRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
 }
 
 module.exports = ArticleService;
