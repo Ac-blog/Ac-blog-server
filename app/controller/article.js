@@ -48,9 +48,20 @@ class ArticleController extends Controller {
   /**
    * 编辑文章
    */
-  editArticle() {
-    const { ctx } = this;
-    ctx.body = 'editArticle';
+  async editArticle() {
+    const { ctx, service } = this;
+    const res = await service.article.editArticle();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 
   /**
