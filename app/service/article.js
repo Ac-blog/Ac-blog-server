@@ -48,6 +48,95 @@ class ArticleService extends Service {
       unpublishedNum: unpublishedNumber,
     };
   }
+
+  /**
+   * 查询到一个并修改
+   * 文章发布
+  */
+  async articlePublish() {
+    const { ctx } = this;
+    const articlePublishRes = await ctx.model.Article.findOneAndUpdate(
+      { _id: ctx.request.body._id },
+      { $set: { release: true } },
+      { upsert: true, new: true });
+    if (articlePublishRes) {
+      return {
+        success: true,
+        results: articlePublishRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
+
+  /**
+   * 查询到一个并修改
+   * 取消文章发布
+  */
+  async articleUnpublish() {
+    const { ctx } = this;
+    const articleUnpublishRes = await ctx.model.Article.findOneAndUpdate(
+      { _id: ctx.request.body._id },
+      { $set: { release: false } },
+      { upsert: true, new: true });
+    if (articleUnpublishRes) {
+      return {
+        success: true,
+        results: articleUnpublishRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
+
+  /**
+   * 获取文章详情
+  */
+  async getArticleDetailById() {
+    const { ctx } = this;
+    const articleDetailRes = await ctx.model.Article.findOne(
+      { _id: ctx.query._id }
+    );
+    if (articleDetailRes) {
+      return {
+        success: true,
+        results: articleDetailRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
+
+  /**
+   * 文章编辑
+  */
+  async editArticle() {
+    const { ctx } = this;
+    const articleDetailRes = await ctx.model.Article.findOneAndUpdate(
+      { _id: ctx.request.body._id },
+      { $set: {
+        title: ctx.request.body.title,
+        author: ctx.request.body.author,
+        articleType: ctx.request.body.articleType,
+        release: ctx.request.body.release,
+        body: ctx.request.body.body,
+        updated: new Date(),
+        _id: ctx.request.body._id,
+      } },
+      { upsert: true, new: true });
+    if (articleDetailRes) {
+      return {
+        success: true,
+        results: articleDetailRes,
+      };
+    }
+    return {
+      success: false,
+    };
+  }
 }
 
 module.exports = ArticleService;

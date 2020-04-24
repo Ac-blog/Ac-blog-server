@@ -48,33 +48,77 @@ class ArticleController extends Controller {
   /**
    * 编辑文章
    */
-  editArticle() {
-    const { ctx } = this;
-    ctx.body = 'editArticle';
+  async editArticle() {
+    const { ctx, service } = this;
+    const res = await service.article.editArticle();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 
   /**
    * 文章发布
    */
-  articlePublish() {
-    const { ctx } = this;
-    ctx.body = 'articlePublish';
+  async articlePublish() {
+    const { ctx, service } = this;
+    const res = await service.article.articlePublish();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 
   /**
    * 文章取消发布
    */
-  articleUnpublish() {
-    const { ctx } = this;
-    ctx.body = 'articleUnpublish';
+  async articleUnpublish() {
+    const { ctx, service } = this;
+    const res = await service.article.articleUnpublish();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 
   /**
    * 获取文章详情页
    */
   async getArticleDetailById() {
-    const { ctx } = this;
-    ctx.body = 'getArticleDetailById';
+    const { ctx, service } = this;
+    const res = await service.article.getArticleDetailById();
+    if (res.success) {
+      ctx.body = {
+        code: 200,
+        ...res,
+      };
+    } else {
+      ctx.body = {
+        code: 500,
+        ...res,
+      };
+    }
   }
 }
 

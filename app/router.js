@@ -13,9 +13,9 @@ module.exports = app => {
   // 编辑文章
   router.post('/admin/v1/article/:id/edit', controller.article.editArticle);
   // 文章发布
-  router.post('admin/v1/article/publish', controller.article.articlePublish);
+  router.post('/admin/v1/article/publish', controller.article.articlePublish);
   // 文章取消发布
-  router.post('admin/v1/article/unpublish', controller.article.articleUnpublish);
+  router.post('/admin/v1/article/unpublish', controller.article.articleUnpublish);
   // 获取文章详情
   router.get('/admin/v1/article/:id', controller.article.getArticleDetailById);
 };
