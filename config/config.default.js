@@ -22,7 +22,7 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: [ 'http://localhost:8081' ],
+    domainWhiteList: [ 'http://localhost:8081', 'https://ac-blog.github.io/' ],
   };
 
   config.mongoose = {

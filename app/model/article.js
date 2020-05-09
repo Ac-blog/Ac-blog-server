@@ -18,6 +18,11 @@ module.exports = app => {
       type: Schema.Types.Mixed,
       default: 0,
     },
+    /** 封面 */
+    coverImage: {
+      type: String,
+      default: '',
+    },
     /** 阅读数 */
     readNumber: {
       type: Number,

@@ -120,6 +120,7 @@ class ArticleService extends Service {
       { $set: {
         title: ctx.request.body.title,
         author: ctx.request.body.author,
+        coverImage: ctx.request.body.coverImage,
         articleType: ctx.request.body.articleType,
         release: ctx.request.body.release,
         body: ctx.request.body.body,
